@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const secret = require("../../config/keys.json").secret;
 const User = require("../models/user.model")
 
 /**
@@ -18,7 +17,7 @@ module.exports = async (req, res, next) => {
     const token = req.headers["authorization"];
     if (!token) return res.status(401).json({ message: "Access Denied!" });
 
-    const decoded = jwt.verify(token, secret);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findOne({ _id: decoded._id, 'tokens.token': token })
     if (!user) {
       throw new Error()

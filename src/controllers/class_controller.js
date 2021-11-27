@@ -1,5 +1,4 @@
 const Class = require("../models/class.model");
-// const Announcement = require("../models/announcement.model");
 
 /**
  * Function to generate classCode - 
@@ -24,22 +23,11 @@ classCodeGenerator = () => {
  */
 exports.create_Class = async (req, res) => {
     classCode = classCodeGenerator();
-    //   let newAnnouncement = new Announcement({
-    //     classCode: classCode,
-    //   });
-    //   newAnnouncement
-    //     .save()
-    //     .then(() => console.log(`AnnouncementID: ${newAnnouncement._id}`))
-    //     .catch(() => {
-    //       return res.status(400).json({ error: "Error Occured. Try Again" });
-    //     });
-    //   let announcementId = newAnnouncement._id;
     let newClass = new Class({
         facultyId: req.user.email,
         className: req.body.className,
         subjectCode: req.body.subjectCode,
         classCode: classCode,
-        // announcementId: classCode,
     });
 
     try {
@@ -98,11 +86,6 @@ exports.joinClass = async (req, res) => {
         theClass.students.map((studentId) => {
             if (studentId === userId) {
                 throw new Error("User already in the class!")
-
-                //unable to return as json.
-                //throw new Error({ message: "User already in the class!" })
-                //This is not working.
-                // return res.status(400).json({ message: "User already in the class!" });
             }
         });
         theClass = await Class.findOneAndUpdate(
@@ -190,39 +173,3 @@ exports.displayStudents = async (req, res) => {
         return res.status(400).json({ error: "Error Occured!" });
     };
 }
-
-// exports.announcement = (req, res) => {
-//     const classCode = req.params.classCode;
-//     let announcement = {
-//         title: req.body.title,
-//         content: req.body.content,
-//         assignment: req.body.assignment,
-//         due: req.body.due,
-//     };
-//     Announcement.findOne({ classCode: classCode }).then((theAnnouncement) => {
-//         if (theAnnouncement < 1)
-//             return res.status(400).json({ error: "Invalid Class Code" });
-//         Announcement.findOneAndUpdate(
-//             { classCode: classCode },
-//             { $push: { announcements: announcement } },
-//             (err, success) => {
-//                 if (err) return res.status(400).json({ error: "Error Occured!" });
-//                 return res.status(200).json({ message: "Announcement made!" });
-//             }
-//         );
-//     });
-// };
-
-// exports.posts = (req, res) => {
-//     const classCode = req.params.classCode;
-//     Class.findOne({ classCode: classCode }).then((theClass) => {
-//         if (theClass < 1)
-//             return res.status(200).json({ message: "Invalid Class Code!" });
-//         let announcementId = theClass.announcementId;
-//         Announcement.findOne({ _id: announcementId }).then((announcements) => {
-//             if (announcements < 1)
-//                 return res.status(400).json({ error: "No Announcements Yet!" });
-//             return res.status(200).json({ announcements: announcements });
-//         });
-//     });
-// };

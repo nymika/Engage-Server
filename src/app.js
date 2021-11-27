@@ -1,15 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const passport = require("passport");
 const cors = require("cors");
 
 /* initialize the app */
 const app = express();
-require('dotenv').config()
 
 /* middleswares */
 app.use(cors()); //cors middlesware
 app.use(express.json()); //json body middlesware
+require('dotenv').config()
 
 const connection_string = process.env.NODE_ENV=="test" ? process.env.ATLAS_URI_TEST : process.env.ATLAS_URI
 
@@ -19,7 +18,6 @@ connection.once('open', () => {
     console.log("MongoDB database connection established successfully");
 })
 
-app.use(passport.initialize());
 
 const user_Router=require('./routers/user');
 const class_Router = require('./routers/class');

@@ -2,9 +2,6 @@ var request = require('request');
 const Assignment = require('../models/assignment.model');
 const Submission = require('../models/submission.model');
 
-// const JDoodleclientId = require('../../config/keys.json').JDoodleclientId;
-// const JDoodleclientSecret = require('../../config/keys.json').JDoodleclientSecret;
-
 /**
  * Function to send data about the code to the JDoodle Compiler API - 
  * @params req, TestCaseOutput, probem
@@ -136,7 +133,6 @@ exports.createNewSubmission = async function (req, res) {
             });
             try {
                 if (req.body.operation !== "runcode") {
-                    // console.log("Submitting the Code..");
                     await new_submission.save();
                 }
                 return res.status(200).send(new_submission);

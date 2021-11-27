@@ -1,9 +1,4 @@
-/* const lang = require('../lang'); */
-// const User = require("../models/user.model.js");
 const Assignment = require('../models/assignment.model.js');
-// const Announcement=require('../models/announcement.model.js');
-/* const Submission = require('../models/submission');*/
-
 
 /**
  * Function to create a new Assignment - 
@@ -40,17 +35,6 @@ exports.createNewAssignment = async (req, res) => {
         }
 
         var assignment = await new_assignment.save();
-
-        //adding assignments to Students list.
-        //     User.updateOne({ email: req.body.email }, { $push: { assignment: assignment._id } }, (err, result) => {
-        //         if (err)
-        //             return res.send(err.message);
-        //         else {
-        //             console.log(assignment);
-        //             return res.status(200).send({ assignment: assignment });
-        //         }
-        //     });
-        // }
         return res.status(201)
             .json({
                 message: "Assignment Created Successfully",
@@ -78,18 +62,6 @@ exports.displayAssignments = async (req, res) => {
         return res.status(400).json({ error: "Error Occured!" });
     };
 };
-
-//update Assignment
-// exports.put_update_assignment = async (req, res) => {
-
-//     Assignment.updateOne({ asg_code: req.body.asg_code }, { $set: { name: req.body.name, course: req.body.course, deadline: req.body.deadline } }, { new: true }, (err, asgn) => {
-
-//         if (err)
-//             return res.send(err.message);
-//         else
-//             return res.status(200).send({ assignment: asgn });
-//     })
-// }
 
 /**
  * Function to add a problem to an assignment - 
@@ -130,6 +102,7 @@ exports.addProblem = async (req, res) => {
         return res.status(400).json({ message: e })
     };
 }
+
 
 /**
  * Function to display problems of an assignment - 
@@ -184,72 +157,3 @@ exports.ProblemDetail = async (req, res) => {
         return res.status(400).json({ error: "Error Occured!" });
     };
 };
-
-// //drop problem.
-// exports.post_drop_problem = async (req, res) => {
-//     Assignment.updateOne({ asg_code: req.body.asg_code }, { $pull: { "problems": { pid: req.body.pid } } }, { new: true }, (err, asgn) => {
-//         if (err)
-//             return res.send(err.message);
-//         else
-//             return res.status(200).send({ assignment: asgn });
-//     });
-// }
-
-// //Update Problem
-// exports.put_update_problem = async (req, res) => {
-
-//     if (!req.body.hasOwnProperty('test-input')) {
-//         return res.status(400).send({ message: 'Empty testcase' });
-//     }
-//     var testcases = [];
-
-//     for (var i = 0; i < req.body['test-input'].length; i++) {
-//         testcases.push({ in: req.body['test-input'][i], out: req.body['test-output'][i] })
-//     }
-
-//     Assignment.updateOne({ "asg_code": req.body.asg_code, "problems.pid": req.body.pid }, { $set: { "problems.$.name": req.body.name, "problems.$.desc": req.body.desc, "problems.$.time_limit": req.body.time_limit, "problems.$.test_cases": testcases } }, { new: true }, (err, asgn) => {
-
-//         if (err)
-//             return res.send(err.message);
-//         else
-//             return res.status(200).send({ assignment: asgn });
-//     })
-// }
-
-// //Get Announcement.
-// exports.get_announcement = async (req, res) => {
-
-//     Announcement.find({ asg_code: req.params.asg_code }, (err, announcements) => {
-//         if (err)
-//             return res.send(err.message);
-//         else
-//             return res.status(200).send(announcements);
-//     });
-// }
-
-// //Post Announcement
-// exports.post_announcement = async (req, res) => {
-
-//     var new_announcement = new Announcement({
-//         date: new Date,
-//         asg_code: req.body.asg_code,
-//         desc: req.body.desc
-//     });
-
-//     new_announcement.save((err, announcement) => {
-//         if (err)
-//             return res.send(err.message);
-//         else
-//             return res.status(200).send(announcement);
-//     });
-// }
-
-// //Delete Annoucement
-// exports.delete_announcement = async (req, res) => {
-//     Announcement.deleteOne({ _id: req.body.id }, (err, announcement) => {
-//         if (err)
-//             return res.send(err.message);
-//         else
-//             return res.status(200).send(announcement);
-//     });
-// }

@@ -8,6 +8,7 @@ const User = require("../models/user.model");
  */
 function isValidEmail(input) {
   const emails = [
+    /^student_[0-9]+@iiitm.ac.in$/,
     /^bcs_[0-9]+@iiitm.ac.in$/,
     /^imt_[0-9]+@iiitm.ac.in$/,
     /^ipg_[0-9]+@iiitm.ac.in$/
@@ -96,7 +97,7 @@ exports.user_login = async (req, res) => {
       msg: "You are logged in!"
     });
   } catch (e) {
-    return res.status(404).send(e); //has to print Password mismatch or User does not exist. But not does print.
+    return res.status(404).send(e);
   }
 }
 

@@ -27,22 +27,7 @@ const UserSchema = new Schema({
         trim: true,
     },
     tokens:[{}]
-    // assignment:{ type:[mongoose.Schema.Types.ObjectId]}
 });
-
-// UserSchema.statics.findByCredentials=async (email,password)=>{
-//     const user=await User.findOne({email}) //how to use this.
-//     if(!user){
-//         throw new Error("User does not exist.");
-//     }
-//     console.log(user);
-//     console.log(1);
-//     const isMatch=await bcrypt.compare(password,user.password)
-//     if(!isMatch){
-//         throw new Error("Password Mismatch");
-//     }
-//     return user;
-// }
 
 UserSchema.methods.generateAuthToken = async function () {
     const user = this
@@ -62,59 +47,3 @@ UserSchema.pre('save',async function(next){
 })
 
 module.exports = mongoose.model('User', UserSchema);
-
-// const validator = require('validator')
-// const jwt = require('jsonwebtoken')
-// const secret = require("../config/keys.json").secret;
-
-// const UserSchema = new Schema({
-//     name: { 
-//         firstName: String,
-//         lastName: String
-//     },
-//     email: {
-//         type: String, 
-//         required: true,
-//         unique: true,
-//         trim: true,
-//         validate(value) {
-//             if (!validator.isEmail(value)) {
-//                 throw new Error('Invalid Email!')
-//             }
-//         }
-//     },
-//     password: {
-//         type: String,
-//         required: true,
-//         minlength: 3,
-//         trim: true
-//     },
-//     userType: {
-//         type: String,
-//         enum: ['admin', 'student'],
-//         default: 'student'
-//     },
-//     phoneNumber: {
-//         type: String,
-//         trim: true,
-//         validate(value) {
-//             if (!validator.isMobilePhone(value, 'en-IN')) {
-//                 throw new Error('Invalid Mobile Number')
-//             }
-//         }
-//     },
-//     tokens: [{}]
-//     // assignment:{ type:[mongoose.Schema.Types.ObjectId]}
-// });
-
-// // userSchema.virtual('class', {
-// //     ref: 'Class',
-// //     localField: '_id',
-// //     foreignField: 'admin'
-// // })
-
-// // userSchema.virtual('submission', {
-// //     ref: 'Submission',
-// //     localField: '_id',
-// //     foreignField: 'submissions.submitedBy'
-// // })

@@ -7,8 +7,6 @@ const ClassSchema = new Schema({
   classCode: { type: String, required: true, unique: true },
   subjectCode: { type: String }, //BCCS-3001.
   students: { type: [String]},
-  // announcementId: { type: String},
-  // studentsPost: { type: Array },
 });
 
 module.exports = mongoose.model("Class", ClassSchema);
