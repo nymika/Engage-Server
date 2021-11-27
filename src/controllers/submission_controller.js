@@ -1,4 +1,5 @@
 var request = require('request');
+const mongoose = require('mongoose');
 const Assignment = require('../models/assignment.model');
 const Submission = require('../models/submission.model');
 
@@ -193,9 +194,11 @@ exports.get_submission_details_userId = async (req, res) => {
  */
 exports.get_submission_details_assignmentCode = async (req, res) => {
     try {
+        console.log("assign cod", req.params.assignmentCode)
         var submission = await Submission.find({ assignment_code: req.params.assignmentCode });
         if (!submission)
             return res.status(400).send({ message: "submission not found" });
+        console.log(submission)
         return res.status(200).send(submission);
     }
     catch (e) {
@@ -211,10 +214,11 @@ exports.get_submission_details_assignmentCode = async (req, res) => {
  * @returns the found list of submissions.
  */
 exports.get_submission_details_problemId = async (req, res) => {
+    var problemId = mongoose.Types.ObjectId(req.params.problemId);
     try {
         var submissions = await Submission.find({
             assignment_code: req.params.assignment_code,
-            problemId: req.params.problemId
+            problemId
         });
 
         if (!submissions)

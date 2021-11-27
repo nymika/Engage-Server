@@ -14,7 +14,7 @@ const {
 router.post('/new', checkAuth, createNewSubmission);
 router.post('/getByID/:id', checkAuth, get_submission_details_id);
 router.post('/getByUserId', checkAuth, get_submission_details_userId);
-router.post('/getByAssignment/:assignment_code', checkAuth, get_submission_details_assignmentCode);
+router.post('/getByAssignment/:assignmentCode', checkAuth, get_submission_details_assignmentCode);
 router.post('/getByProblemId/:assignment_code/:problemId', checkAuth, get_submission_details_problemId);
 
 module.exports = router;

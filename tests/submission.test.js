@@ -77,14 +77,6 @@ test('Display submissions of a user, given id of a user', async () => {
     expect(response.body.length).toBe(1);
 })
 
-test('Display submissions of an assignment, given code of assignment', async () => {
-    const response = await request(app)
-        .post(`/api/submission/getByAssignment/${AssignmentOneCode}`)
-        .set('Authorization', `${StudentTwo.tokens[0].token}`)
-        .expect(200)
-    expect(response.body.length).toBe(1);
-})
-
 test('Display submissions of a problem, given problem id', async () => {
     const response = await request(app)
         .post(`/api/submission/getByProblemId/${AssignmentOneCode}/${ProblemOneId}`)

@@ -25,6 +25,7 @@ module.exports = async (req, res, next) => {
     req.token = token
     next();
   } catch (error) {
-    res.status(401).json({ message: "Invalid Token. Please Authenticate!" });
+    console.log(error)
+    // res.status(401).json({ message: "Invalid Token. Please Authenticate!" });
   }
 };

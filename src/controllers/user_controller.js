@@ -111,6 +111,21 @@ exports.user_profile = function (req, res) {
 };
 
 /**
+ * Function to display profile by id - 
+ * @async
+ * @method
+ * @params req, res
+ */
+ exports.user_profile_byId = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.body.userId })
+    res.status(200).send(user);
+  } catch (e) {
+    res.status(500).send()
+  }
+}
+
+/**
  * Function to Logout user - 
  * @async
  * @method
