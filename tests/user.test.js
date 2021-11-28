@@ -10,8 +10,8 @@ test('Should signup a new user', async () => {
         firstname: "Nymika",
         lastname: "Pasnoori",
         email: "p.nymika@gmail.com",
-        password: "myPass",
-        confirmPassword: "myPass",
+        password: "myPass123#",
+        confirmPassword: "myPass123#",
         userType: "admin",
         phoneNumber: "9876543210"
     }).expect(201)

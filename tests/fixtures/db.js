@@ -11,8 +11,8 @@ const AdminOne = {
     firstname: "AdminOne",
     lastname: "one",
     email: "adminOne@gmail.com",
-    password: "adminOne",
-    confirmPassword: "adminOne",
+    password: "adminOne1#",
+    confirmPassword: "adminOne1#",
     userType: "admin",
     phoneNumber: "9876543210",
     tokens: [{
@@ -26,8 +26,8 @@ const StudentOne = {
     firstname: "StudentOne",
     lastname: "one",
     email: "bcs_1@iiitm.ac.in",
-    password: "studentOne",
-    confirmPassword: "studentOne",
+    password: "studentOne1#",
+    confirmPassword: "studentOne1#",
     userType: "student",
     phoneNumber: "9876543210",
     tokens: [{
@@ -41,8 +41,8 @@ const StudentTwo = {
     firstname: "StudentTwo",
     lastname: "two",
     email: "imt_2@iiitm.ac.in",
-    password: "studentTwo",
-    confirmPassword: "studentTwo",
+    password: "studentTwo1#",
+    confirmPassword: "studentTwo1#",
     userType: "student",
     phoneNumber: "9876543210",
     tokens: [{

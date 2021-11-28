@@ -37,7 +37,7 @@ exports.user_signup = async (req, res) => {
 
   if (userType !== "admin") { //students should login through college ids only.
     if (!isValidEmail(email))
-      return res.status(400).json({ message: "Please enter your college id. Eg: bcs_3@iiitm.ac.in" });
+      return res.status(400).json({ message: "Please enter your college id. Eg: student_3@iiitm.ac.in" });
   }
 
   try {
